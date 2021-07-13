@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Giỏ Hàng</title>
+</head>
+
+<body>
+
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <div th:each="cart : ${cart}">
+                <form th:action="@{/cart/update(id=${cart.id})}" method="post">
+                    <input type="hidden" name="id" value="${cart.id}">
+                    <tr>
+                        <td th:text="${cart.id}"></td>
+                        <td th:text="${cart.name}"></td>
+                        <td th:text="${cart.price}"></td>
+                        <td><input name="qty" th:value="${cart.qty}" th:onblur="this.form.submit()" style="width:50px;"></td>
+                        <td>[[${cart.price * cart.qty}]]</td>
+                        <td>
+                            <a th:href="@{/cart/remove(id=${cart.id})}"><button type="button" class="btn btn-outline-secondary">Remove</button></a>
+                        </td>
+                    </tr>
+                </form>
+            </div>
+        </tbody>
+      </table>
+    <a href="/cart/clear"><button type="button" class="btn btn-outline-danger">Clear Cart</button></a>
+    <a href="/home/index"><button type="button" class="btn btn-outline-danger">Add more</button></a>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{/style/dangky.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <title>Đăng Ký Tài Khoản</title>
+</head>
+
+<body >
+  <div class="container" ng-controller="crt1">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <form th:action="@{/register}" th:object="${account}" method="post">
+            <h5 class="card-title text-center">Đăng Ký Tài Khoản</h5>
+              <div class="form-label-group">
+                <input  required type="text" id="inputUser" name="username" th:field="*{username}" class="form-control" placeholder="Username">
+                <label for="inputUser">Tài Khoản</label>
+              </div>
+              <div class="form-label-group">
+                <input  type="text" id="inputUser1"  required class="form-control" name="fullname" th:field="*{fullname}" placeholder="Email address">
+                <label for="inputUser1">Họ Và Tên</label>
+              </div>
+              <div class="form-label-group">
+                <input type="email" id="inputEmail" required class="form-control" name="email" th:field="*{email}" placeholder="Email address">
+                <label for="inputEmail">Địa Chỉ Mail</label>
+              </div>
+
+              <div class="form-label-group">
+                <input required type="password" id="inputPassword" name="ps" th:field="*{password}" class="form-control"
+                  placeholder="Password">
+                <label for="inputPassword">Mật Khẩu</label>
+              </div>
+              <div class="form-label-group">
+                <input type="password" required id="inputPassword2" name="conps" class="form-control"
+                  placeholder="Password">
+                <label for="inputPassword2">Xác Nhận Mật Khẩu</label>
+              </div>
+              <br>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase">Đăng Ký</button>
+              <a th:href="@{/home/index}"> <small class="form-text text-center">Đã có tài khoản?</small></a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

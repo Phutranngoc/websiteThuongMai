@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Trang Chủ</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" th:source="@{/image/logo.png}" sizes="96x96" />
+	<link rel="stylesheet" th:href="@{/source/bootstrap-3.3.6-dist/css/bootstrap.css}">
+	<link rel="stylesheet" th:href="@{/source/font-awesome-4.5.0/css/font-awesome.css}">
+	<link rel="stylesheet" th:href="@{/style/slider.css}">
+	<link rel="stylesheet" th:href="@{/style/mystyle.css}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Faustina&display=swap" rel="stylesheet">
+</head>
+
+<body class="font">
+	<!-- Header -->
+	<div class="allcontain">
+		<div class="header" id="trangchu">
+			<ul class="socialicon">
+				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+			</ul>
+			<ul class="givusacall">
+				<li>Số Điện Thoại Liên Hệ : +999999999 </li>
+			</ul>
+			<ul class="logreg">
+				<span th:text="${message}"></span>
+			</ul>
+		</div>
+
+		<table class="table table-hover">
+		    <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th></th>
+            </tr>
+			<div th:each="cart : ${cart}">
+                <form th:action="@{/cart/update(id=${cart.id})}" method="post">
+                    <input type="hidden" name="id" value="${cart.id}">
+                    <tr>
+                        <td th:text="${cart.id}"></td>
+                        <td th:text="${cart.name}"></td>
+                        <td th:text="${cart.price}"></td>
+                        <td><input name="qty" th:value="${cart.qty}" th:onblur="this.form.submit()" style="width:50px;"></td>
+                        <td>[[${cart.price * cart.qty}]]</td>
+                        <td>
+                            <a th:href="@{/cart/remove(id=${cart.id})}"><button type="button" class="btn ">Remove</button></a>
+                        </td>
+                    </tr>
+                </form>
+            </div>
+		  </table>
+		  <a href="/cart/clear"><button type="button" class="btn ">Clear Cart</button></a>
+		  <a href="/home/index"><button type="button" class="btn ">Add more</button></a>
+		<div class="bottommenu">
+
+			<img th:src="@{/image/line.png}" alt="line"> <br>
+			<div class="footer">
+				<div class="copyright">
+					&copy; Copy right 2016 | <a href="#">Privacy </a>| <a href="#">Policy</a>
+				</div>
+				<div class="atisda">
+					Nguồn template <a href="http://www.webdomus.net/">Web Domus Italia - Web Agency </a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript" th:src="@{/source/bootstrap-3.3.6-dist/js/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/source/js/isotope.js}"></script>
+	<script type="text/javascript" th:src="@{/source/js/myscript.js}"></script>
+	<script type="text/javascript" th:src="@{/source/bootstrap-3.3.6-dist/js/jquery.1.11.js}"></script>
+	<script type="text/javascript" th:src="@{/source/bootstrap-3.3.6-dist/js/bootstrap.js}"></script>
+</body>
+
+
+
+</html>
